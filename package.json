@@ -1,0 +1,31 @@
+{
+  "name": "slack-forever",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "slack-forever": "./app.js"
+  },
+  "main": "index.js",
+  "keywords": [
+    "slack"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fzac/slack-forever.git"
+  },
+  "author": "fzac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fzac/slack-forever/issues"
+  },
+  "homepage": "https://github.com/fzac/slack-forever#readme",
+  "dependencies": {
+    "argparse": "^1.0.10",
+    "lodash": "^4.17.5",
+    "slack-node": "^0.1.8",
+    "slackbotapi": "^1.3.9"
+  }
+}
