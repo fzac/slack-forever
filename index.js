@@ -26,7 +26,7 @@ class SlackForever {
       this.slackbot.on('presence_change', this.handle.bind(this));
       setInterval(() => {
         console.log('auto active...');
-        this.setActive();
+        this.update();
       }, 30 * 60 * 1000);
     });
   }
@@ -42,20 +42,36 @@ class SlackForever {
     }
 
     console.log('Setting myself active');
-    this.setActive();
+    this.update();
   }
 
-  setActive() {
+  update() {
+    this.getPresence(() => {
+      this.setActive(() => {
+        this.getPresence();
+      })
+    });
+  }
+
+  setActive(callback) {
+    const noop = () => {};
+    callback = callback || noop;
+    console.log('call users.setPresence...');
     this.slack.api('users.setPresence', { presence: 'auto' }, (err, response) => {
       if (err) {
         console.error(`error[users.setActive]: ${err}`);
       }
+      callback();
     });
   }
 
-  getPresence() {
+  getPresence(callback) {
+    console.log('call users.getPresence...');
+    const noop = () => {};
+    callback = callback || noop;
     this.slack.api('users.getPresence', (err, response) => {
       console.log(response);
+      callback();
     });
   }
 
